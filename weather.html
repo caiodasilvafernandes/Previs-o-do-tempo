@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Previsão do Tempo</title>
+  <link rel="stylesheet" href="weather.css" />
+</head>
+<body>
+
+  <div class="app" id="app">
+    <div class="background-overlay" id="bgOverlay"></div>
+
+    <header class="header">
+      <div class="search-bar">
+        <input type="text" id="cityInput" placeholder="Buscar cidade..." />
+        <button id="searchBtn">&#128269;</button>
+      </div>
+      <div class="units-toggle">
+        <button class="unit-btn active" id="btnC" onclick="setUnit('C')">°C</button>
+        <button class="unit-btn" id="btnF" onclick="setUnit('F')">°F</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="current-weather">
+        <div class="location">
+          <span id="cityName">São Paulo</span>
+          <span id="countryName">BR</span>
+        </div>
+        <div class="date-time" id="dateTime"></div>
+
+        <div class="weather-icon-wrap">
+          <div class="weather-icon" id="weatherIcon">&#9728;</div>
+          <div class="condition" id="condition">Ensolarado</div>
+        </div>
+
+        <div class="temp-wrap">
+          <span class="temp" id="temperature">28</span>
+          <span class="unit" id="unitLabel">°C</span>
+        </div>
+
+        <div class="feels-like">Sensação térmica: <span id="feelsLike">30</span><span class="unit-small" id="unitSmall">°C</span></div>
+      </section>
+
+      <section class="details-grid">
+        <div class="detail-card">
+          <div class="detail-icon">&#128167;</div>
+          <div class="detail-label">Umidade</div>
+          <div class="detail-value" id="humidity">65%</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">&#127774;</div>
+          <div class="detail-label">UV</div>
+          <div class="detail-value" id="uvIndex">6</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">&#127788;</div>
+          <div class="detail-label">Vento</div>
+          <div class="detail-value" id="windSpeed">14 km/h</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">&#128065;</div>
+          <div class="detail-label">Visibilidade</div>
+          <div class="detail-value" id="visibility">10 km</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">&#127780;</div>
+          <div class="detail-label">Pressão</div>
+          <div class="detail-value" id="pressure">1013 hPa</div>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon">&#127783;</div>
+          <div class="detail-label">Precipitação</div>
+          <div class="detail-value" id="precipitation">0 mm</div>
+        </div>
+      </section>
+
+      <section class="forecast-section">
+        <h3 class="section-title">Próximos 5 dias</h3>
+        <div class="forecast-cards" id="forecastCards"></div>
+      </section>
+
+      <section class="hourly-section">
+        <h3 class="section-title">Previsão por hora</h3>
+        <div class="hourly-scroll" id="hourlyScroll"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="weather.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
