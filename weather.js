@@ -1,6 +1,11 @@
 const apiKey = "bc5a506da074a84b2ca6c5425136744f";
 var lat, lon;
 
+let ACTIVE_THEME = 'sunny';
+
+let currentUnit = 'C';
+let data = { ...MOCK_DATA };
+
 const THEMES = {
   sunny: {
     bgFrom:  '#f97316',  
@@ -73,7 +78,7 @@ const MOCK_DATA = {
   ],
 };
 
-document.addEventListener("DOMContentLoaded", () =>{
+/* document.addEventListener("DOMContentLoaded", () =>{
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(setPosition, errorSetPosition);
     }
@@ -84,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () =>{
 });
 
 async function setData(url){
-    var dados = await fetch(url);
-    console.log(dados);
+    var data = await fetch(url);
+    console.log(data);
 }
 
 function setPosition(position){
@@ -99,19 +104,7 @@ function setPosition(position){
 function errorSetPosition() {
   console.log("Não foi possível obter a sua localização.");
 }
-
-// ── Tema ativo — troque o nome para mudar todas as cores ──────
-//    Opções: 'sunny' | 'cloudy' | 'rainy' | 'stormy' | 'snowy' | 'night' | 'dawn'
-let ACTIVE_THEME = 'sunny';
-// ─────────────────────────────────────────────────────────────
-
-// ── Dados de exemplo (substitua por chamada de API real) ──────
-
-// ── Estado ─────────────────────────────────────────────────────
-let currentUnit = 'C';
-let data = { ...MOCK_DATA };
-
-// ── Utilitários ────────────────────────────────────────────────
+ */
 function toF(c) { return Math.round(c * 9 / 5 + 32); }
 
 function displayTemp(c) {
@@ -180,7 +173,6 @@ function render() {
   renderHourly();
 }
 
-// ── Unidade (°C / °F) ─────────────────────────────────────────
 function setUnit(unit) {
   currentUnit = unit;
   document.getElementById('btnC').classList.toggle('active', unit === 'C');
