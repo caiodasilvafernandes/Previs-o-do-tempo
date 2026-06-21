@@ -1,43 +1,38 @@
 const apiKey = "bc5a506da074a84b2ca6c5425136744f";
 var lat, lon;
 
-let ACTIVE_THEME = 'sunny';
-
-let currentUnit = 'C';
-let data = { ...MOCK_DATA };
-
 const THEMES = {
-  sunny: {
+  Sunny: {
     bgFrom:  '#f97316',  
     bgTo:    '#fbbf24',  
     accent:  '#fef08a',
   },
-  cloudy: {
+  Clouds: {
     bgFrom:  '#64748b', 
     bgTo:    '#334155',
     accent:  '#cbd5e1',
   },
-  rainy: {
+  Rain: {
     bgFrom:  '#1e40af',
     bgTo:    '#1e3a5f',
     accent:  '#93c5fd',
   },
-  stormy: {
+  Storm: {
     bgFrom:  '#1e1b4b', 
     bgTo:    '#111827',
     accent:  '#a78bfa',
   },
-  snowy: {
+  Snow: {
     bgFrom:  '#bfdbfe',
     bgTo:    '#e0f2fe',
     accent:  '#ffffff',
   },
-  night: {
+  Night: {
     bgFrom:  '#0f172a',
     bgTo:    '#020617',
     accent:  '#818cf8',
   },
-  dawn: {
+  Dawn: {
     bgFrom:  '#7c3aed',
     bgTo:    '#f97316',
     accent:  '#fde68a',
@@ -78,9 +73,15 @@ const MOCK_DATA = {
   ],
 };
 
-/* document.addEventListener("DOMContentLoaded", () =>{
+
+let ACTIVE_THEME = 'sunny';
+
+let currentUnit = 'C';
+var data;
+
+document.addEventListener("DOMContentLoaded", () =>{
     if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(setPosition, errorSetPosition);
+        navigator.geolocation.getCurrentPosition(setPositionAndData, errorSetPosition);
     }
 
     applyTheme(ACTIVE_THEME);
@@ -93,18 +94,20 @@ async function setData(url){
     console.log(data);
 }
 
-function setPosition(position){
+function setPositionAndData(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
 
     var url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    console.log(url);
+    
     setData(url);
 }
 
 function errorSetPosition() {
   console.log("Não foi possível obter a sua localização.");
 }
- */
+
 function toF(c) { return Math.round(c * 9 / 5 + 32); }
 
 function displayTemp(c) {
@@ -179,21 +182,3 @@ function setUnit(unit) {
   document.getElementById('btnF').classList.toggle('active', unit === 'F');
   render();
 }
-
-// ── Busca de cidade (mock — conecte a uma API aqui) ───────────
-function searchCity(city) {
-  if (!city.trim()) return;
-  // Exemplo: troque por fetch(`https://api.openweathermap.org/...`)
-  console.log(`Buscando: ${city}`);
-  // Por enquanto apenas atualiza o nome
-  data.city = city;
-  render();
-}
-
-document.getElementById('searchBtn').addEventListener('click', () => {
-  searchCity(document.getElementById('cityInput').value);
-});
-
-document.getElementById('cityInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') searchCity(e.target.value);
-});
